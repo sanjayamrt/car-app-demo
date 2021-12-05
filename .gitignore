@@ -1,0 +1,7 @@
+#IntellijIdea files
+.idea/
+
+#OS
+*.DS_Store
+
+
