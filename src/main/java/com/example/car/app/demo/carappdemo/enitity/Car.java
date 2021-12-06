@@ -18,13 +18,16 @@ public class Car {
 
     private Integer madeYear;
 
+    private String color;
+
     protected Car() {
     }
 
-    public Car(String make, String model, Integer madeYear) {
+    public Car(String make, String model, Integer madeYear, String color) {
         this.make = make;
         this.model = model;
         this.madeYear = madeYear;
+        this.color = color;
     }
 
     public Long getId() {
@@ -55,16 +58,23 @@ public class Car {
         this.madeYear = madeYear;
     }
 
+    public String getColor() {
+        return color;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return Objects.equals(getId(), car.getId()) && getMake().equals(car.getMake()) && getModel().equals(car.getModel()) && getMadeYear().equals(car.getMadeYear());
+        return Objects.equals(getId(), car.getId()) && getMake().equals(car.getMake())
+                && getModel().equals(car.getModel()) && getMadeYear().equals(car.getMadeYear())
+                && getColor().equals(getColor());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getMake(), getModel(), getMadeYear());
+        return Objects.hash(getId(), getMake(), getModel(),
+                getMadeYear(),getColor());
     }
 }

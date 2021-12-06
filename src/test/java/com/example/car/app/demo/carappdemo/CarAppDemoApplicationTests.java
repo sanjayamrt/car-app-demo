@@ -33,6 +33,8 @@ class CarAppDemoApplicationTests {
 
     private static final long id = 1l;
 
+    private static final String color = "White";
+
     @Autowired
     MockMvc mockMvc;
 
@@ -42,15 +44,15 @@ class CarAppDemoApplicationTests {
     @Test
     public void addNewCarToTheDatabaseSucessfully() throws Exception {
 
-        CarResponseDTO carResponseDTO = new CarResponseDTO(id, make, model, year);
+        CarResponseDTO carResponseDTO = new CarResponseDTO(id, make, model, year, color);
 
-        CarRequestDTO carRequestDTO = new CarRequestDTO(make, model, year);
+        CarRequestDTO carRequestDTO = new CarRequestDTO(make, model, year,color);
 
         ObjectMapper objectMapper = new ObjectMapper();
 
         String requestJson = objectMapper.writeValueAsString(carRequestDTO);
 
-        Mockito.when(carService.addNewCar(Mockito.any(CarRequestDTO.class)))
+        Mockito.when(carService.addNewCar(Mockito.eq(carRequestDTO)))
                 .thenReturn(carResponseDTO);
 
         MvcResult result = mockMvc.perform(post("/cars")
@@ -71,7 +73,7 @@ class CarAppDemoApplicationTests {
         int year = 2007;
         long id = 1l;
 
-        CarRequestDTO carRequestDTO = new CarRequestDTO(null, model, year);
+        CarRequestDTO carRequestDTO = new CarRequestDTO(null, model, year,color);
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -93,7 +95,7 @@ class CarAppDemoApplicationTests {
         int year = 2007;
         long id = 1l;
 
-        CarResponseDTO carResponseDTO = new CarResponseDTO(id, make, model, year);
+        CarResponseDTO carResponseDTO = new CarResponseDTO(id, make, model, year,color);
 
         when(carService.getCarDetails(eq(1l)))
                 .thenReturn(carResponseDTO);
@@ -120,7 +122,7 @@ class CarAppDemoApplicationTests {
         int year = 2007;
         long id = 1l;
 
-        CarResponseDTO carResponseDTO = new CarResponseDTO(id, make, model, year);
+        CarResponseDTO carResponseDTO = new CarResponseDTO(id, make, model, year,color);
 
         when(carService.getCarDetails(eq(1l)))
                 .thenThrow(new CarNotFoundException(1l));

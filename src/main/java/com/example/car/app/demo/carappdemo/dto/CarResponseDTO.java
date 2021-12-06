@@ -13,11 +13,14 @@ public class CarResponseDTO {
 
     private Integer year;
 
-    public CarResponseDTO(Long id, String make, String model, Integer year) {
+    private String color;
+
+    public CarResponseDTO(Long id, String make, String model, Integer year, String color) {
         this.id = id;
         this.make = make;
         this.model = model;
         this.year = year;
+        this.color = color;
     }
 
     public Long getId() {
@@ -36,16 +39,22 @@ public class CarResponseDTO {
         return year;
     }
 
+    public String getColor() {
+        return color;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CarResponseDTO that = (CarResponseDTO) o;
-        return getId().equals(that.getId()) && getMake().equals(that.getMake()) && getModel().equals(that.getModel()) && getYear().equals(that.getYear());
+        return getId().equals(that.getId()) && getMake().equals(that.getMake())
+                && getModel().equals(that.getModel()) && getYear().equals(that.getYear())
+                && getColor().equals(that.getColor());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getMake(), getModel(), getYear());
+        return Objects.hash(getId(), getMake(), getModel(), getYear(), getColor());
     }
 }

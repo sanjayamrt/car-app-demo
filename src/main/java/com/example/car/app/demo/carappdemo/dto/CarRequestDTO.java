@@ -16,13 +16,17 @@ public class CarRequestDTO {
     @Digits(integer = 4, fraction = 0, message = "Car make year should be a valid 4 digit number")
     private Integer year;
 
+    @NotNull(message = "'Color' is a mandatory parameter")
+    private String color;
+
     protected CarRequestDTO() {
     }
 
-    public CarRequestDTO(String make, String model, Integer year) {
+    public CarRequestDTO(String make, String model, Integer year, String color) {
         this.make = make;
         this.model = model;
         this.year = year;
+        this.color = color;
     }
 
     public String getMake() {
@@ -37,17 +41,23 @@ public class CarRequestDTO {
         return year;
     }
 
+    public String getColor() {
+        return color;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CarRequestDTO that = (CarRequestDTO) o;
-        return Objects.equals(getMake(), that.getMake()) && Objects.equals(getModel(), that.getModel()) && Objects.equals(getYear(), that.getYear());
+        return Objects.equals(getMake(), that.getMake()) && Objects.equals(getModel(),
+                that.getModel()) && Objects.equals(getYear(), that.getYear()) &&
+                Objects.equals(getColor(),that.getColor());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getMake(), getModel(), getYear());
+        return Objects.hash(getMake(), getModel(), getYear(), getColor());
     }
 }
 
