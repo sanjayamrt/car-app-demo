@@ -6,4 +6,8 @@ import com.example.car.app.demo.carappdemo.dto.CarResponseDTO;
 public interface CarService {
 
     public CarResponseDTO addNewCar(CarRequestDTO newCar);
+
+    public CarResponseDTO getCarDetails(Long id);
+
+    public void delete(Long id);
 }
