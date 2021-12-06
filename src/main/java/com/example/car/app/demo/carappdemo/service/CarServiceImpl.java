@@ -22,7 +22,7 @@ public class CarServiceImpl implements CarService {
     private CarMapper carMapper;
 
     public CarResponseDTO addNewCar(CarRequestDTO newCar) {
-        Car car = new Car(newCar.getMake(), newCar.getModel(), newCar.getYear());
+        Car car = new Car(newCar.getMake(), newCar.getModel(), newCar.getYear(), newCar.getColor());
         car = this.carRepository.save(car);
         return carMapper.carToCarResponseDTO(car);
     }
