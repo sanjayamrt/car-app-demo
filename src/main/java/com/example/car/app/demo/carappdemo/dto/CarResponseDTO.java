@@ -15,12 +15,22 @@ public class CarResponseDTO {
 
     private String color;
 
+    private String modelDescription;
+
     public CarResponseDTO(Long id, String make, String model, Integer year, String color) {
         this.id = id;
         this.make = make;
         this.model = model;
         this.year = year;
         this.color = color;
+    }
+
+    public void setModelDescription(String modelDescription) {
+        this.modelDescription = modelDescription;
+    }
+
+    public String getModelDescription() {
+        return modelDescription;
     }
 
     public Long getId() {

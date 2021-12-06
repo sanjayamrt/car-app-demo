@@ -10,6 +10,7 @@ import org.apache.catalina.util.CharsetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -21,8 +22,16 @@ public class CarServiceImpl implements CarService {
     @Autowired
     private CarMapper carMapper;
 
+    @Autowired
+    private ModelQuoteService modelQuoteService;
+
     public CarResponseDTO addNewCar(CarRequestDTO newCar) {
         Car car = new Car(newCar.getMake(), newCar.getModel(), newCar.getYear(), newCar.getColor());
+        String modelDescription = "";
+        if (!Objects.isNull(car)) {
+            modelDescription = modelQuoteService.generateQuoteForModel(car.getModel());
+        }
+        car.setModelDescription(modelDescription);
         car = this.carRepository.save(car);
         return carMapper.carToCarResponseDTO(car);
     }

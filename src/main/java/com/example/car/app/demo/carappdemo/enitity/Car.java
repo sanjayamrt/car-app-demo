@@ -20,6 +20,8 @@ public class Car {
 
     private String color;
 
+    private String modelDescription;
+
     protected Car() {
     }
 
@@ -28,6 +30,14 @@ public class Car {
         this.model = model;
         this.madeYear = madeYear;
         this.color = color;
+    }
+
+    public void setModelDescription(String modelDescription) {
+        this.modelDescription = modelDescription;
+    }
+
+    public String getModelDescription() {
+        return modelDescription;
     }
 
     public Long getId() {

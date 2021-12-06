@@ -14,9 +14,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class CarControllerExceptionHandler {
 
     @ResponseBody
-    @ExceptionHandler({CarNotFoundException.class, EmptyResultDataAccessException.class})
+    @ExceptionHandler(CarNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     String carNotFoundExceptionHandler(CarNotFoundException exception) {
+        return exception.getMessage();
+    }
+
+    @ResponseBody
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String emptyDataFoundExceptionHandler(EmptyResultDataAccessException exception) {
         return exception.getMessage();
     }
 
