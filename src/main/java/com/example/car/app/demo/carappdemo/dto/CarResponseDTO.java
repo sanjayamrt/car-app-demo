@@ -54,6 +54,18 @@ public class CarResponseDTO {
     }
 
     @Override
+    public String toString() {
+        return "CarResponseDTO{" +
+                "id=" + id +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", year=" + year +
+                ", color='" + color + '\'' +
+                ", modelDescription='" + modelDescription + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
