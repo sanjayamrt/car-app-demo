@@ -20,7 +20,6 @@ public class ModelQuoteServiceImpl implements  ModelQuoteService {
     @Override
     public String generateQuoteForModel(String model) {
         String urlToRetreiveQuoteForModel = dataMuseUrl + "words?ml=" + model;
-        System.out.println(urlToRetreiveQuoteForModel);
         QuotesFromDataMuseDTO[] wordsFromDataMuse =
                 restClient.getForObject(urlToRetreiveQuoteForModel , QuotesFromDataMuseDTO[].class);
         if (!Objects.isNull(wordsFromDataMuse) && wordsFromDataMuse.length > 0) {
